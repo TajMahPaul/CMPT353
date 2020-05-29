@@ -1,0 +1,11 @@
+1. Where you did the same calculations with NumPy and Pandas, which did you find easier to work with? Which code do you think is easier to read? 
+ANSWER:
+    Pandas was definitely easier to work with since I have worked with it before. The one liners that are possible with aggregation functions make the readability and maintainability of code easier.
+
+2. What were the running times of the two pivot_months_* functions? How can you explain the difference?
+ANSWER:
+    %timeit pivot_months_pandas(data) : 32 ms ± 591 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
+    %timeit pivot_months_loops(data)  : 973 ms ± 5.81 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+
+    Difference:
+        The difference in the timing comes from using a dedicated library to do calculation vs. manually doing it. A dedicated library that has been tried and tested with multiple people working it will always outperform an implementation you did yourself.
