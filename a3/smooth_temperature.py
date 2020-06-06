@@ -15,11 +15,11 @@ def main():
     # plt base data
     cpu_data = pd.read_csv(csv_file, parse_dates=['timestamp'])
     plt.figure(figsize=(12, 4))
-    plt.plot(cpu_data['timestamp'], cpu_data['temperature'], 'b.', alpha=0.5)
+    plt.plot(cpu_data['timestamp'], cpu_data['temperature'], 'b.', alpha=0.5, label='Raw Data')
 
     # plot lowess smoothed
     loess_smoothed = lowess( cpu_data['temperature'],cpu_data['timestamp'], frac=.05)
-    plt.plot(cpu_data['timestamp'], loess_smoothed[:, 1], 'r-')
+    plt.plot(cpu_data['timestamp'], loess_smoothed[:, 1], 'r-', label='Lowess Smoothed')
 
     # plot kalman smoothed
     kalman_data = cpu_data[['temperature', 'cpu_percent', 'sys_load_1', 'fan_rpm']]
@@ -35,7 +35,10 @@ def main():
         transition_matrices=transition
     )
     kalman_smoothed, state_cov = kf.smooth(kalman_data)
-    plt.plot(cpu_data['timestamp'], kalman_smoothed[:, 0], 'g-')
-    plt.show()
+    plt.plot(cpu_data['timestamp'], kalman_smoothed[:, 0], 'g-', label='Kalman Smoothed')
+    plt.legend()
+    # plt.show()
+    plt.savefig('cpu.svg')
+    
 if __name__ == "__main__":
     main()

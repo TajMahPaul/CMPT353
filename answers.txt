@@ -1,0 +1,12 @@
+1. When smoothing the CPU temperature, do you think you got a better result with LOESS or Kalman smoothing? What differences did you notice? 
+
+Answer:
+    I definetly got a better result from Kalman filter. It seemed to detect the spikes better as the lowess filter was too smoothed. I also prefered the amount of parameter 
+    I could play with in regards to the Kalman filter.
+
+2. In the GPX files, you might have also noticed other data about the observations: time stamp, course (heading in degrees from north, 0–360), speed (in m/s). How could those have been used to make a better prediction about the “next” latitude and longitude?
+
+Answer:
+    Well in theory if we had some prior knowlegde about wiether these parameters were related, we could edit the values of the transition co-variance matrix to relect those relations in values other than
+    the values in the middle. Or, like the last excercise on CPU tempts, if we knew something about the relations between the parameter, we could build a linear combination of values to calculate the next step 
+    of parameters given the previous parameters.
