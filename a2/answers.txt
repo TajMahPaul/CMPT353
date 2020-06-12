@@ -1,0 +1,10 @@
+1. The result is in the form y = mx + b. Where m is the slope, x is the data['timestamp'], b is the intercept.
+This formula will produce a float value y which is the prediction of what the rating is. As you can see from the
+data, the prediction values are close to the actual rating values. The prediction values are stored in 
+data['prediction'].
+
+2. This produces a best fit line because the formula is using the slope and intercept values found from
+linear regression of the data['timestamp'] and data['rating']. The created_at values and timestamp values 
+pair correctly to make points on the plot because timestamp is essentially created from created_at.
+Timestamp is the number of seconds after some epoch based on the string date from created_at. 
+Additionally, the rating for each timestamp value correponds to a point on the graph.
