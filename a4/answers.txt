@@ -1,0 +1,8 @@
+1) Based on your results for the last question, do you think daily temperatures are a good way to predict population density? Briefly explain why or why not.
+    Answer:
+        I don't think the think daily temperatures are a good way to predict population density. I cannot find any trend in the scatter plot and it seems random
+
+2)The larger data file (stations.json.gz) was kept compressed on disk throughout the analysis. Decompressing every time we run the program seems inefficient. Why might this be faster than working with an uncompressed .json data? 
+    Answer:
+        I'm pretty sure this has to do with disk usage. Disk usage and transite in between disk and memory is expensive. Thus, if we have compressed data in transit then they're are less peices of data
+        moving between the disk drive and memory. Furthermore, having a smaller foot print meams that a higher percentage of data could be saved in cache; improving speeds even further.
