@@ -1,0 +1,14 @@
+1) Which of the four transforms suggested got you the closest to satisfying the assumptions of a T-test? 
+    answer:
+        np.sqrt()
+2) I gave imprecise English translations of what the by-week test, and the Mann-Whitney test were actually testing. Do the same for the original T-test, and for the transformed data T-test.
+    answer:
+        original t test: WE can't come to any conclusion with the original t-test because we don't meet the assumption that the two distributions are normally distributed
+        transformed t test: Since our data is skewed to the right, then the np.sqrt() transformation looks like a reasonable transformation. For that fact we can use the T test to conclude whehter the 
+        the two distribution share the same mean
+3) Of the four approaches, which do you think actually does a better job of getting an answer for the original question: “are there a different number of Reddit comments posted on weekdays than on weekends?” Briefly explain why.
+    answer:
+        In my opinion the Mam-Whitney U-test is the best method to see if their are a 'different' number of comments posted on weekend as compared to weekdays. This is because we don't need to apply any tranformations on the 
+        data and we can still get a answer
+
+4) on average their are more comments on weekends vs. weekdays
