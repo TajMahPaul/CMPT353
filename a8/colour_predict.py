@@ -1,9 +1,17 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+from skimage.color import rgb2lab
 from skimage.color import lab2rgb
 import sys
+
+from sklearn.model_selection import train_test_split
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import FunctionTransformer
+
 from sklearn.naive_bayes import GaussianNB
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.ensemble import RandomForestClassifier
 
 OUTPUT_TEMPLATE = (
     'Bayesian classifier:    {bayes_rgb:.3f} {bayes_convert:.3f}\n'
@@ -70,18 +78,25 @@ def plot_predictions(model, lum=71, resolution=256):
     plt.xlabel('A')
     plt.imshow(pixels)
 
-
 def main():
     data = pd.read_csv(sys.argv[1])
     X = data[['R', 'G', 'B']].values / 255
     y = data['Label'].values
 
+    X_train, X_valid, y_train, y_valid = train_test_split(X,y)
+
     # TODO: create some models
+    bayes_rgb_model = make_pipeline(GaussianNB())
+    bayes_convert_model = make_pipeline(FunctionTransformer(rgb2lab), GaussianNB())
+    knn_rgb_model = make_pipeline(KNeighborsClassifier(n_neighbors=9))
+    knn_convert_model = make_pipeline(FunctionTransformer(rgb2lab), KNeighborsClassifier(n_neighbors=9))
+    rf_rgb_model = make_pipeline(RandomForestClassifier(n_estimators=50, max_depth=5, min_samples_leaf = 2))
+    rf_convert_model = make_pipeline(FunctionTransformer(rgb2lab), RandomForestClassifier(n_estimators=50, max_depth=5, min_samples_leaf = 2))
 
     # train each model and output image of predictions
     models = [bayes_rgb_model, bayes_convert_model, knn_rgb_model, knn_convert_model, rf_rgb_model, rf_convert_model]
     for i, m in enumerate(models):  # yes, you can leave this loop in if you want.
-        m.fit(X_train, y_train)
+        m.fit(X_train,y_train)
         plot_predictions(m)
         plt.savefig('predictions-%i.png' % (i,))
 
