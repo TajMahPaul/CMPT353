@@ -1,0 +1,9 @@
+1) Which model did the best for the colour-prediction task? Can you give a theory about why? Do you have any theory about why RGB/LAB/HSV worked better for different models?
+    - For me it looked like the KNN model performed the best for the task. I think for this task that makes sense because colors that are close to a object being classified look visually similar. 
+    Meaning Colors that are close in RGB, HSV, or any other colors values look similiar, so it makes sense to use a distance based approach. I think LAB values worked better since they normalize
+    the color values a bit. The wikipedia articale says: "Since this algorithm relies on distance for classification, normalizing the training data can improve its accuracy dramatically."
+
+2) 
+    - I think that this algorithm makes reasonable mistakes, yes. The mistakes that are made are those where cities are really close in geographical location. This is reasonable because, generally, 
+    cities that are close, share similar weather patterns. To add to the features? I could think of potentially adding a humidity index. Or, something like uv index. Something that would allow to differentiate
+    cities that close to eachother. Not sure if those suggestions are valid, however.
