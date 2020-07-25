@@ -1,0 +1,11 @@
+1)
+reddit-0, no cache, no schema : 14.305s
+reddit-2, no cache, no schema : 2m30.124s
+reddit-2, no cache, with schema : 20.962s
+reddit-2, with cache, with schema : 18.111s
+
+2)
+Based on 1), I would say most of the time is used on the file processing
+
+3) 
+Right after the joining the grouped data with the original.
