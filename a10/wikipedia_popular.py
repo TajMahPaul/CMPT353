@@ -28,9 +28,10 @@ def main(in_directory, out_directory):
     wiki_data = wiki_data.filter(wiki_data.lang.eqNullSafe('en'))
     wiki_data = wiki_data.filter(~wiki_data.page.eqNullSafe("Main_Page"))
     wiki_data = wiki_data.filter(~wiki_data.page.startswith("Special:"))
-    
+    # wiki_data = wiki_data.cache()
 
     wiki_data_grouped = wiki_data.groupBy(wiki_data['date']).agg( functions.max(wiki_data['times_requested']).alias('max'), functions.first("page").alias('page'))
+    # wiki_data_grouped =wiki_data_grouped.cache()
     wiki_final = wiki_data_grouped.join(wiki_data, (wiki_data.times_requested == wiki_data_grouped.max) & (wiki_data.date == wiki_data_grouped.date)).drop(wiki_data.date).drop(wiki_data.page)
     wiki_final = wiki_final.cache()
     wiki_final = wiki_final.select(
