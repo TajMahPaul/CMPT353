@@ -1,0 +1,3 @@
+1) If I had not cached then it would have to again read the data from disk
+
+2) with broadcast: 45sec, without: 1mins, 1sec 
